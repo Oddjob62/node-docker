@@ -147,3 +147,18 @@ db.users.find()
 db.users.deleteOne({ "_id" : ObjectId("60931954bd28cc00b60674f1"), "username" : "alex1", "password" : "$2a$12$NR.ZG/u2Hhf4YJaFGelnuOfCNq32BVl84O2/wnhsLmmkYbG4ps4Gm", "__v" : 0 })
 
 db.posts.find()
+
+# Expres behind proxy
+https://expressjs.com/en/guide/behind-proxies.html
+
+
+# ** Workflow **
+  # Make changes
+  # Build image
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml build node-app
+  # Push image to docker hub
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml push node-app
+  # On production server pull new image
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml pull node-app
+  # bring up (only) new image
+    docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --no-deps node-app
